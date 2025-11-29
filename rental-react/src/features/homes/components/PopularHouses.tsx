@@ -1,5 +1,5 @@
 import React from 'react';
-import cartHouse from '../../../assets/images/cartHouse.jpg';
+import cartHouse from '../../../assets/images/house 2.jpg';
 
 import type { House } from '../types/house';
 

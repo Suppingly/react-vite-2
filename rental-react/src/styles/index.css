@@ -1,0 +1,398 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*reset style*/
+
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями
+ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+      Пригодится в большинстве ситуаций
+      (когда, например, нужно будет "прижать" футер к низу сайта)
+     */
+  height: 100%;
+}
+
+/**
+  Плавный скролл
+ */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+      Пригодится в большинстве ситуаций
+      (когда, например, нужно будет "прижать" футер к низу сайта)
+     */
+  min-height: 100%;
+  /**
+      Унифицированный интерлиньяж
+     */
+  line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+svg *[fill] {
+  fill: currentColor;
+}
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:root {
+  /* ==== Глобальные переменные ==== */
+  --color-dark-blue: #1b213a; /* Тёмно-синий основной цвет */
+  --color-white: #ffffff; /* Белый цвет */
+  --color-dark: #000000; /* Чёрный цвет текста */
+  --color-light-blue: #88bacd; /* Светло-голубой акцент */
+  --color-green:rgb(43, 172, 43);
+
+  --border-radius: 30px; /* Скругление углов элементов */
+
+  --font-family-base: Roboto, sans-serif; /* Основной шрифт сайта */
+
+  --container-width: 1355px; /* Максимальная ширина контейнера */
+  --container-padding-x: 15px; /* Горизонтальные внутренние отступы */
+}
+
+/* ==== Основные стили страницы ==== */
+body {
+  font-family: var(--font-family-base), serif; /* Основной шрифт страницы */
+  color: var(--color-dark); /* Цвет текста — чёрный */
+  font-size: 16px; /* Базовый размер шрифта */
+  background-color: var(--color-white); /* Цвет фона — белый */
+}
+
+/* ==== Универсальный контейнер ==== */
+.container {
+  max-width: calc(
+    var(--container-width) + var(--container-padding-x) * 2
+  ); /* Общая ширина контейнера с учётом отступов */
+  margin-inline: auto; /* Центрирование контейнера по горизонтали */
+  padding-inline: var(--container-padding-x); /* Внутренние отступы слева и справа */
+}
+
+/* ==== Заголовки ==== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700; /* Все заголовки жирные */
+}
+
+/* ==== Ссылки ==== */
+a {
+  color: var(--color-dark); /* Цвет ссылок — чёрный */
+  text-decoration: none; /* Без подчёркивания */
+}
+
+header{
+    background-color: var(--color-light-blue);
+    margin-bottom: 1px;
+    height: 75px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.header{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.header_home{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 100%;
+}
+
+/* ==== Навигационное меню ==== */
+.header-menu-list {
+  display: flex; /* Горизонтальное расположение пунктов */
+  column-gap: 50px; /* Расстояние между элементами */
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.header-menu-link {
+  display: inline-flex; /* Гибкое выравнивание текста и иконок */
+  align-items: center; /* Вертикальное выравнивание по центру */
+  text-decoration: none; /* Без подчёркивания */
+  font-weight: 700; /* Жирный текст */
+  font-size: 16px; /* Размер текста */
+}
+
+/* ==== Кнопки регистрации и входа ==== */
+.header-action {
+  display: flex; /* Расположение кнопок в одну линию */
+  column-gap: 20px; /* Отступ между кнопками */
+}
+
+.button-reg {
+  background-color: var(--color-dark-blue); /* Синий фон */
+  color: var(--color-white); /* Белый текст */
+  padding: 5px 15px; /* Внутренние отступы */
+  border-radius: 5px; /* Скруглённые углы */
+  border: none; /* Без рамки */
+  cursor: pointer; /* Курсор — рука */
+}
+
+.button-reg:hover {
+  background-color: var(--color-white); /* При наведении — белый фон */
+  color: black; /* Текст становится чёрным */
+}
+
+.button-login {
+  border: none; /* Без рамки */
+  background: none; /* Прозрачный фон */
+  font-weight: 700; /* Жирный текст */
+  cursor: pointer; /* Курсор — рука */
+}
+
+.button-login:hover {
+  border-radius: 5px; /* Скругляем углы при наведении */
+  color: var(--color-white); /* Белый текст */
+  background-color: var(--color-dark-blue); /* Тёмно-синий фон */
+}
+main{
+    background-color: var(--color-light-blue);
+}
+.hero_con{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 20px 20px;
+    column-gap: 100px;
+    margin-inline: auto;
+    padding-inline: 15;
+    max-width: 1385px;
+}
+.hero_text{
+    width: 40%;
+}
+.hero_logo{
+    font-size: 45px;
+}
+.hero_image{
+    display: block;
+    width: 45%;
+}
+.desc {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    padding: 50px 100px;
+}
+.desc_img img{
+    display: block;
+    overflow: hidden;
+    border-radius: 15px;
+}
+.desc_text{
+    width: 60%;
+}
+.desc_text h2{
+    margin: 0px;
+}
+.desc_button{
+    display: inline-block;
+    padding: 0px 15px;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid black;
+    border-radius: 8px;
+    text-align: center;
+}
+.desc_button:hover{
+    color: var(--color-white);
+    background-color: darkblue;
+}
+.contacts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 100px;
+}
+.contacts_menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-light-blue);
+    padding: 25px;
+    width: 100%;
+    border-radius: 15px;
+}
+.contacts_menu h3{
+    margin: 5px 0px;
+}
+.contacts_form{
+    margin: 25px;
+    padding: 5px;
+}
+.contacts_input{
+    height: 35px;
+    width: 200px;
+    border-radius: 5px;
+    border:0px;
+    font-family: inherit;
+    padding: 0px 5px;
+    margin-right: 10px;
+}
+.contacts_button{
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    border:0px;
+    font-family: inherit;
+}
+.contacts_button:hover{
+    background-color: darkblue;
+    cursor: pointer;
+}
