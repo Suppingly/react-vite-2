@@ -3,7 +3,7 @@ import House from '../assets/images/house.jpg'
 function Hero() {
     return (
         <>
-        <main>
+        <main className='hero'>
             <section className="container">
             <section className="hero_con">
                 <div className="hero_text">

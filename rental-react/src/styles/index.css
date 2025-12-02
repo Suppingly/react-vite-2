@@ -235,12 +235,6 @@ header{
     align-items: center;
 }
 
-.header{
-    display: flex;
-    justify-content:space-around;
-    align-items: center;
-}
-
 .header_home{
     display:flex;
     justify-content: center;
@@ -255,10 +249,9 @@ header{
   column-gap: 50px; /* Расстояние между элементами */
   justify-content: center;
   align-items: center;
-  width: 50%;
 }
 
-.header-menu-link {
+.header-menu-item {
   display: inline-flex; /* Гибкое выравнивание текста и иконок */
   align-items: center; /* Вертикальное выравнивание по центру */
   text-decoration: none; /* Без подчёркивания */
@@ -298,18 +291,19 @@ header{
   color: var(--color-white); /* Белый текст */
   background-color: var(--color-dark-blue); /* Тёмно-синий фон */
 }
-main{
+.hero {
     background-color: var(--color-light-blue);
 }
 .hero_con{
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    padding: 20px 20px;
-    column-gap: 100px;
-    margin-inline: auto;
-    padding-inline: 15;
-    max-width: 1385px;
+  background-color: var(--color-light-blue);
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding: 20px 20px;
+  column-gap: 100px;
+  margin-inline: auto;
+  padding-inline: 15;
+  max-width: 1385px;
 }
 .hero_text{
     width: 40%;
@@ -326,6 +320,7 @@ main{
     align-items: center;
     gap: 100px;
     padding: 50px 100px;
+    background-color: var(--color-white);
 }
 .desc_img img{
     display: block;
@@ -350,6 +345,59 @@ main{
 .desc_button:hover{
     color: var(--color-white);
     background-color: darkblue;
+}
+.popular-house {
+  background-color: var(--color-white);
+}
+.popular-title {
+  text-align: center;
+}
+.house-content {
+  display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.card-house{
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px lightgray;
+    transition: transform 0.25s ease-in-out;
+    user-select: none;
+}
+.card-house:hover{
+    transform: translateY(-5px);
+}
+.card-house-images {
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.house-status {
+    display: flex; 
+    align-items: center;
+    background-color:var(--color-green);
+    color: var(--color-white);
+    border-radius: 5px;
+    padding: 2px 7px;
+}
+.house-price-status{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.house-price{
+  font-size: large;
+}
+.house-info{
+  text-align: center;
+  display: flex;
+  column-gap: 50px;
 }
 .contacts{
     display: flex;
@@ -395,4 +443,23 @@ main{
 .contacts_button:hover{
     background-color: darkblue;
     cursor: pointer;
+}
+.toggle-button{
+  background-color: var(--color-white);
+  border: 0px;
+  text-decoration:underline;
+  color:rgb(0, 100, 255);
+  cursor: pointer;
+}
+.auth-form input{
+  width: 100%;
+  margin: 10px 0px;
+}
+.submit-button{
+  width: 100%;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  font-weight: 700;
+  border: 0px;
+  cursor: pointer;
 }
